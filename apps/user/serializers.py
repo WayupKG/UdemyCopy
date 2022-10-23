@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
 
+from .models import ExtraInfoMentor
 from .services.constants import ADMIN, MENTOR, USER
 from .services.validators import validate_password
 from .services.creators import create_user
@@ -28,3 +29,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Определить пользователя и создать"""
         return create_user(**validated_data)
+
+
+class ExtraInfoMentorSerializer(serializers.ModelSerializer):
+    """Сериализация дополнительной информации наставника"""
+
+    class Meta:
+        model = ExtraInfoMentor
+        fields = ['type_of_experience', 'audience']

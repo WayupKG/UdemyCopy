@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f"{self.first_name} {self.last_name}".strip()
 
 
-class MentorInfo(models.Model):
+class ExtraInfoMentor(models.Model):
     EXPERIENCE = (
         ('privately', 'лично, частным образом'),
         ('professionally', 'лично, профессионально'),
@@ -71,6 +71,16 @@ class MentorInfo(models.Model):
                                           max_length=15, choices=EXPERIENCE)
     audience = models.CharField('Есть ли у вас аудитория, с которой вы хотите поделиться своим курсом?',
                                 max_length=20, choices=AUDIENCE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Дополнительная информация наставника'
+        verbose_name_plural = 'Дополнительные информации наставников'
+
+    def __str__(self) -> str:
+        return self.mentor.get_full_name()
 
 
 class Payment(models.Model):

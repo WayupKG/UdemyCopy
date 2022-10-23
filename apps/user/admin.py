@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, MentorInfo
+from .models import User, ExtraInfoMentor
 
 
 @admin.register(User)
@@ -11,8 +11,8 @@ class AdminUser(admin.ModelAdmin):
     list_filter = ('user_type',)
 
 
-@admin.register(MentorInfo)
-class AdminMentorInfo(admin.ModelAdmin):
+@admin.register(ExtraInfoMentor)
+class AdminExtraInfoMentor(admin.ModelAdmin):
     """ Организация """
     list_display = ('mentor', 'type_of_experience', 'audience')
     list_filter = ('type_of_experience', 'audience')
