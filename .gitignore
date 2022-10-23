@@ -14,6 +14,7 @@ celerybeat-schedule
 .env
 prod_settings.py
 local_settings.py
+
 */cache_file/*
 **/migrations/**
 !**/migrations
@@ -21,6 +22,10 @@ local_settings.py
 *backend/*/migrations/*
 !*backend/*/migrations
 !*backend/*/migrations/__init__.py
+
+**/Logging/**
+!**/Logging
+!**/Logging/.gitkeep
 
 __pycache__/
 **/__pycache__/**
@@ -44,6 +49,4 @@ Makefile
 
 doc-dev
 
-Logging/*
-!*Logging/.gitkeep
 **/dev_templates/
