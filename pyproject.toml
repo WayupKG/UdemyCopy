@@ -9,6 +9,7 @@ python = "^3.9"
 Django = "3.2"
 djangorestframework = "^3.14.0"
 python-json-logger = "^2.0.4"
+environs = "^9.5.0"
 
 [tool.poetry.dev-dependencies]
 

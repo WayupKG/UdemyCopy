@@ -1,16 +1,26 @@
 import os
+import environs
+
 from datetime import timedelta
 
+from django.core.management.utils import get_random_secret_key
+
 from pathlib import Path
+
 from .loginng_formatters import CustomJsonFormatter
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+env = environs.Env()
+env.read_env(BASE_DIR / '.env')
 
-DEBUG = os.getenv('DEBUG')
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+SECRET_KEY = env('SECRET_KEY')
+
+DEBUG = env('DEBUG')
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,7 +34,6 @@ INSTALLED_APPS = [
 
     # Created by the app
     'apps.user.apps.UserConfig',
-    'apps.course.apps.CourseConfig',
 ]
 
 MIDDLEWARE = [
@@ -37,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'settings.urls'
 
 TEMPLATES = [
     {
@@ -55,7 +64,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     "default": {
@@ -100,11 +109,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_TITLE_FROM = os.getenv('EMAIL_TITLE_FROM')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_TITLE_FROM = env('EMAIL_TITLE_FROM')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -183,7 +192,7 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'formatter': 'json_formatter',
-            'filename': 'config/Logging/warning.json',
+            'filename': 'settings/Logging/warning.json',
         },
     },
 
