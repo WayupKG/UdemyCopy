@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "udemycopy"
+version = "0.1.0"
+description = ""
+authors = ["WayupKG <adikgk232323@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "3.2"
+djangorestframework = "^3.14.0"
+python-json-logger = "^2.0.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
