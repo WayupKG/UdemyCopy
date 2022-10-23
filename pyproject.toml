@@ -8,9 +8,10 @@ authors = ["WayupKG <adikgk232323@gmail.com>"]
 python = "^3.9"
 Django = "3.2"
 djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.2.2"
 python-json-logger = "^2.0.4"
 environs = "^9.5.0"
-djangorestframework-simplejwt = "^5.2.2"
+celery = {extras = ["redis"], version = "^5.2.7"}
 
 [tool.poetry.dev-dependencies]
 
