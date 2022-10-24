@@ -12,6 +12,7 @@ djangorestframework-simplejwt = "^5.2.2"
 python-json-logger = "^2.0.4"
 environs = "^9.5.0"
 celery = {extras = ["redis"], version = "^5.2.7"}
+six = "^1.16.0"
 
 [tool.poetry.dev-dependencies]
 
