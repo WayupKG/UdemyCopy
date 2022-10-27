@@ -141,14 +141,6 @@ REST_FRAMEWORK = {
     )
 }
 
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password_reset_confirm/{uid}/{token}/',
-    'USERNAME_RESET_CONFIRM_URL': '#/username_reset_confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {},
-}
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
