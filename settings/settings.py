@@ -1,4 +1,6 @@
 import os
+
+import django.conf.global_settings
 import environs
 
 from datetime import timedelta
@@ -16,11 +18,11 @@ env.read_env(BASE_DIR / '.env')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
-DEBUG = env('DEBUG')
+DEBUG = os.environ.get("DEBUG", True)
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1").split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -109,11 +111,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_TITLE_FROM = env('EMAIL_TITLE_FROM')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.udemy.kg")
+EMAIL_PORT = os.environ.get("EMAIL_PORT", 587)
+EMAIL_TITLE_FROM = os.environ.get("EMAIL_TITLE_FROM", "Udemy")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "info@udemy.kg")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "123456789")
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
