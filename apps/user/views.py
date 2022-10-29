@@ -4,8 +4,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, UpdateAPIView
-from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, GenericAPIView
 from rest_framework.response import Response
 
 from .permissions import AllowMentor
@@ -32,10 +31,11 @@ class ExtraInfoMentorAPIView(CreateAPIView):
         )
 
 
-class EmailPasswordResetAPIView(APIView):
+class EmailPasswordResetAPIView(GenericAPIView):
+    serializer_class = EmailSerializer
 
     def post(self, *args: tuple[Any], **kwargs: dict[str: Any]) -> Response:
-        serializer = EmailSerializer(data=self.request.data)
+        serializer = self.serializer_class(data=self.request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.send_email(
                 protocol=self.request.META['wsgi.url_scheme'],
@@ -47,13 +47,13 @@ class EmailPasswordResetAPIView(APIView):
         )
 
 
-class PasswordResetConfirmAPIView(UpdateAPIView):
+class PasswordResetConfirmAPIView(GenericAPIView):
     serializer_class = PasswordResetSerializer
 
     def get_object(self, **kwargs: dict[str: Any]) -> User:
         return get_user_from_uidb64(kwargs.get('uidb64'))
 
-    def update(self, *args, **kwargs: dict[str: Any]) -> Response:
+    def put(self, *args, **kwargs: dict[str: Any]) -> Response:
         user, data = self.get_object(**kwargs), self.request.data.dict()
         data.update({'uidb64': kwargs.get('uidb64'), 'token': kwargs.get('token')})
 

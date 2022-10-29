@@ -6,13 +6,13 @@ from apps.user import views
 
 
 urlpatterns = [
-    path('token/', jwt_views.TokenObtainPairView.as_view(), name="login"),
-    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name="login_refresh"),
+    path('login/', jwt_views.TokenObtainPairView.as_view(), name="login"),
+    path('login/refresh/', jwt_views.TokenRefreshView.as_view(), name="login_refresh"),
 
-    path('sign-up/', views.RegistrationAPIView.as_view(), name="sign-up"),
-    path('extra-info-mentor/', views.ExtraInfoMentorAPIView.as_view(), name="extra-info-mentor"),
+    path('registration/', views.RegistrationAPIView.as_view(), name="sign_up"),
+    path('registration/extra-info-mentor/', views.ExtraInfoMentorAPIView.as_view(), name="extra_info_mentor"),
 
-    path('reset-password/', views.EmailPasswordResetAPIView.as_view(), name="reset-password"),
-    path('reset-password-confirm/<uidb64>/<token>/',
-         views.PasswordResetConfirmAPIView.as_view(), name="reset-password-confirm"),
+    path('reset-password/', views.EmailPasswordResetAPIView.as_view(), name="reset_password"),
+    path('reset-password/<uidb64>/<token>/',
+         views.PasswordResetConfirmAPIView.as_view(), name="reset_password_confirm"),
 ]
