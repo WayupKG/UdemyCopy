@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  init:
+  build:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -33,7 +33,20 @@ jobs:
         poetry run python3 manage.py migrate
 
     - name: Run Test Urls
-      run: poetry run python3 manage.py test apps.user.tests.test_urls
+      run: poetry run coverage run manage.py test apps.user.tests.test_urls
 
     - name: Run Test Registration and Authentication
-      run: poetry run python3 manage.py test apps.user.tests.test_auth
+      run: poetry run coverage run manage.py test apps.user.tests.test_auth
+
+    - name: Create coverage.xml
+      run: poetry run coverage xml
+
+    - name: Report coverage to codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        files: ./coverage.xml # optional
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
+        verbose: true # optional (default = false)
