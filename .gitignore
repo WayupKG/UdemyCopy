@@ -9,6 +9,10 @@ idea
 dist
 db.sqlite3
 
+.coverage
+coverage.html
+coverage.xml
+
 venv
 celerybeat-schedule
 .env
