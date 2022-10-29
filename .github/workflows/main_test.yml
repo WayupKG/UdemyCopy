@@ -34,3 +34,6 @@ jobs:
 
     - name: Run Test Urls
       run: poetry run python3 manage.py test apps.user.tests.test_urls
+
+    - name: Run Test Registration and Authentication
+      run: poetry run python3 manage.py test apps.user.tests.test_auth

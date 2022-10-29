@@ -20,21 +20,21 @@ class TestUrls(TestCase):
         return self.assertEqual(view_class, jwt_views.TokenRefreshView)
 
     def test_sign_up(self):
-        url = reverse('sign-up')
+        url = reverse('registration')
         view_class = resolve(url).func.view_class
         return self.assertEqual(view_class, views.RegistrationAPIView)
 
     def test_extra_info_mentor(self):
-        url = reverse('extra-info-mentor')
+        url = reverse('extra_info_mentor')
         view_class = resolve(url).func.view_class
         return self.assertEqual(view_class, views.ExtraInfoMentorAPIView)
 
     def test_reset_password(self):
-        url = reverse('reset-password')
+        url = reverse('reset_password')
         view_class = resolve(url).func.view_class
         return self.assertEqual(view_class, views.EmailPasswordResetAPIView)
 
     def test_reset_password_confirm(self):
-        url = reverse('reset-password-confirm', args=["Mg", "bdtsfv-e732384f23caf82fa2cd2251f4e59105"])
+        url = reverse('reset_password_confirm', args=["Mg", "bdtsfv-e732384f23caf82fa2cd2251f4e59105"])
         view_class = resolve(url).func.view_class
         return self.assertEqual(view_class, views.PasswordResetConfirmAPIView)

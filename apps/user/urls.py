@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', jwt_views.TokenObtainPairView.as_view(), name="login"),
     path('login/refresh/', jwt_views.TokenRefreshView.as_view(), name="login_refresh"),
 
-    path('registration/', views.RegistrationAPIView.as_view(), name="sign_up"),
+    path('registration/', views.RegistrationAPIView.as_view(), name="registration"),
     path('registration/extra-info-mentor/', views.ExtraInfoMentorAPIView.as_view(), name="extra_info_mentor"),
 
     path('reset-password/', views.EmailPasswordResetAPIView.as_view(), name="reset_password"),
